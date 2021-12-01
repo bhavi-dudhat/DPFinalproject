@@ -15,7 +15,7 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
-x = datetime.datetime.now()
+x = datetime.now()
 time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
 
 
