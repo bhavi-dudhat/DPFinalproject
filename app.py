@@ -10,6 +10,7 @@ import requests as requests
 from flask import request
 
 
+
 client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?retryWrites=true&w=majority")
 db = client['dpProject']
 collection = db['weatherData']
