@@ -6,4 +6,4 @@ geocoder
 pymongo
 datetime
 dnspython==2.1.0
-socket
+socket==none
