@@ -22,7 +22,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    g = geocoder.ip('me')
+#     g = geocoder.ip('me')
+    g = geocoder.headers['x-forwarded-for']
     print(g.latlng)
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
