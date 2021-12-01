@@ -25,7 +25,7 @@ def index():
     g = geocoder.ip('me')
     print(g.latlng)
     
-    ip = requests.get('https://ip.seeip.org').text
+    ip = requests.get('http://myexternalip.com/raw').text
     print(ip)
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
