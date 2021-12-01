@@ -3,7 +3,7 @@ import json
 import geocoder
 from flask import Flask, render_template
 import pprint
-import datetime
+from datetime import datetime, timezone
 # from apscheduler.scheduler import Scheduler
 from pymongo import MongoClient
 import requests as requests
@@ -16,7 +16,7 @@ db = client['dpProject']
 collection = db['weatherData']
 
 
-x = datetime.datetime.now(timezone.utc)
+x = datetime.now(timezone.utc)
 time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
 
 app = Flask(__name__)
