@@ -4,7 +4,6 @@ import geocoder
 from flask import Flask, render_template
 import pprint
 from datetime import datetime, timezone
-# from apscheduler.scheduler import Scheduler
 from pymongo import MongoClient
 import requests as requests
 from flask import request
@@ -16,9 +15,6 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
-x = datetime.now(timezone.utc).astimezone()
-# x = datetime.now()
-time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
 
 app = Flask(__name__)
 
@@ -30,9 +26,10 @@ def index():
     g = geocoder.ip(client_ip)
     print(g.latlng)
     
-    ip = requests.get('http://myexternalip.com/raw').text
-    print(ip)
-
+    g_time = geocoder.google(g.latlng, method='timezone')    
+    x = datetime.now(pytz.timezone(g_time.timeZoneId))
+    time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")    
+    
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
     if response.status_code == 200:
