@@ -22,14 +22,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-#     g = geocoder.ip('me')
-    g = requests.get('https://api.ipify.org').text
-    datag = geocoder.ip(g)
-    print(datag)
+    g = geocoder.ip('me')
+    print(g.latlng)
 
-#     print(datag['lat'])
-
-    url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (datag.latlng[0], datag.latlng[1])
+    url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
     if response.status_code == 200:
         data = json.loads(response.text)
