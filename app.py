@@ -7,7 +7,11 @@ import datetime
 # from apscheduler.scheduler import Scheduler
 from pymongo import MongoClient
 import requests as requests
+import socket
 
+hostname = socket.gethostname()
+ip = socket.gethostbyname_ex(hostname)
+print(ip)
 
 client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?retryWrites=true&w=majority")
 db = client['dpProject']
@@ -22,11 +26,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    g = geocoder.ip('me')
+    g = geocoder.ip(ip[2][0])
     print(g.latlng)
-    
-    ip = requests.get('http://myexternalip.com/raw').text
-    print(ip)
+
+    # g = requests.get('http://ip-api.com/json/')
+    # datag = json.loads(g.text)
+    # print(datag)
+
+    # print(datag['lat'])
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
