@@ -27,7 +27,7 @@ def index():
     datag = geocoder.ip(g)
     print(datag)
 
-    print(datag['lat'])
+#     print(datag['lat'])
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (datag.latlng[0], datag.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
