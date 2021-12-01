@@ -3,3 +3,7 @@ pandas
 gunicorn
 requests
 geocoder
+pymongo
+json
+datetime
+pprint
