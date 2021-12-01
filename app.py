@@ -26,7 +26,7 @@ def index():
     print(g.latlng)
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
-    response = requests.get(url)
+    response = requests.get(url, timeout=None)
     if response.status_code == 200:
         data = json.loads(response.text)
         collection.insert_one(data)
