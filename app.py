@@ -24,6 +24,9 @@ app = Flask(__name__)
 def index():
     g = geocoder.ip('me')
     print(g.latlng)
+    
+    ip = requests.get('https://ip.seeip.org').text
+    print(ip)
 
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
