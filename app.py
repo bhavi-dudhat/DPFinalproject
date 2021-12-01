@@ -10,7 +10,7 @@ import requests as requests
 import socket
 
 hostname = socket.gethostname()
-ip = socket.gethostbyname_ex(hostname)
+ip = socket.gethostbyname(hostname)
 print(ip)
 
 client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?retryWrites=true&w=majority")
