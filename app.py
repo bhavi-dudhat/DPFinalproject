@@ -15,6 +15,9 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
+x = datetime.datetime.now()
+time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
+
 
 app = Flask(__name__)
 
@@ -25,10 +28,6 @@ def index():
     print(client_ip)
     g = geocoder.ip(client_ip)
     print(g.latlng)
-    
-    g_time = geocoder.google(g.latlng, method='timezone')    
-    x = datetime.now(pytz.timezone(g_time.timeZoneId))
-    time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")    
     
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
     response = requests.get(url, timeout=(5.05, 27))
