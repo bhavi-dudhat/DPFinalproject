@@ -38,8 +38,8 @@ def index():
         data = json.loads(response.text)
         collection.insert_one(data)
         
-        sunrise = datetime.datetime.fromtimestamp(int(data['sys']['sunrise']))
-        sunset = datetime.datetime.fromtimestamp(int(data['sys']['sunset']))
+        sunrise = datetime.fromtimestamp(int(data['sys']['sunrise']))
+        sunset = datetime.fromtimestamp(int(data['sys']['sunset']))
         sunset = f"{sunset:%I:%M %p}"
         sunrise = f"{sunrise:%I:%M %p}"
         for i in data['weather'] :
