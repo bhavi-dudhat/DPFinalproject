@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 from pymongo import MongoClient
 import requests as requests
 from flask import request
+import time
 
 
 
@@ -15,8 +16,8 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
-
-x = datetime.now(timezone.utc)
+x = time.localtime()
+# x = datetime.now()
 time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
 
 app = Flask(__name__)
