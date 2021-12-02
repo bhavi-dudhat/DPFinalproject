@@ -15,7 +15,7 @@ db = client['dpProject']
 collection = db['weatherData']
 
 # time = strftime('%I:%M %p', localtime())
-x = datetime.datetime.now()
+x = datetime.now()
 time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
 
 app = Flask(__name__)
