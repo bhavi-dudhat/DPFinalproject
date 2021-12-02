@@ -14,9 +14,7 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
-# time = strftime('%I:%M %p', localtime())
-x = datetime.now()
-time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
+time = strftime('%I:%M %p', localtime())
 
 app = Flask(__name__)
 
@@ -28,7 +26,7 @@ def index():
     print(g.latlng)
     
     url = "https://fcc-weather-api.glitch.me/api/current?lat=%s&lon=%s" % (g.latlng[0], g.latlng[1])
-    response = requests.get(url, timeout=(5.05, 27))
+    response = requests.get(url)
     if response.status_code == 200:
         data = json.loads(response.text)
         collection.insert_one(data)
