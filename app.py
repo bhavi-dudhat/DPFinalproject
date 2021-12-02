@@ -8,19 +8,15 @@ from pymongo import MongoClient
 import requests as requests
 from flask import request
 import time
-import pytz
-
+from time import strftime, localtime
 
 client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?retryWrites=true&w=majority")
 db = client['dpProject']
 collection = db['weatherData']
 
-x = datetime.now()
-time = x.strftime("%I")+":"+ x.strftime("%M")+" " +x.strftime("%p")
-
+time = strftime('%I:%M %p', localtime())
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -34,11 +30,8 @@ def index():
     if response.status_code == 200:
         data = json.loads(response.text)
         collection.insert_one(data)
-        
-        sunrise = datetime.fromtimestamp(int(data['sys']['sunrise']))
-        sunset = datetime.fromtimestamp(int(data['sys']['sunset']))
-        sunset = f"{sunset:%I:%M %p}"
-        sunrise = f"{sunrise:%I:%M %p}"
+        sunrise = strftime('%I:%M %p', localtime(int(data['sys']['sunrise'])))
+        sunset = strftime('%I:%M %p', localtime(int(data['sys']['sunset'])))
         for i in data['weather'] :
             weather = i['main']
         visibility = data['visibility']/1000
