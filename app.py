@@ -14,7 +14,7 @@ client = MongoClient("mongodb+srv://Bhavi:dudhat@cluster0.6he2a.mongodb.net/dp?r
 db = client['dpProject']
 collection = db['weatherData']
 
-time = strftime('%I:%M %p', localtime())
+time = strftime('%B %d, %Y', localtime())
 
 app = Flask(__name__)
 
